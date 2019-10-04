@@ -22,7 +22,7 @@ const getBeerLocations = () => {
   fetch(apiBeers)
     .then(res => res.json())
     .then(data => {
-      beers = data
+      beers = data;
       displayBeers();
     });
 };
@@ -32,13 +32,21 @@ const displayCategories = () => {
 };
 
 const displayBeers = () => {
-  const beerArr = []
-  beerArr.push(beers)
+  const lowHopBeers = [];
 
-  const irishBeers = beerArr.filter(beer => beer.id === 2);
+  console.log(beers.data[0].abv);
+  console.log(beers.data.length);
 
-  
-  console.log(Object.prototype.toString.call(beers));
-  console.log(Object.prototype.toString.call(beerArr));
-  console.log(irishBeers);
+  for (let i = 0; i < beers.data.length; i++) {
+    let abvNum = parseInt(beers.data[i].abv);
+    if (abvNum < 7) {
+      lowHop.push(beers.data[i]);
+    }
+  }
+
+  // console.log(Object.prototype.toString.call(beers));
+  // console.log(Object.prototype.toString.call(beerArr));
+
+  console.log(beers.data);
+  console.log(lowHopBeers);
 };

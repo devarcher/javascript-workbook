@@ -28,25 +28,27 @@ const getBeerLocations = () => {
 };
 
 const displayCategories = () => {
-  console.log(categories);
+  // console.log(categories);
 };
 
 const displayBeers = () => {
   const lowHopBeers = [];
+  const highHopBeers = [];
 
-  console.log(beers.data[0].abv);
-  console.log(beers.data.length);
+  // console.log(beers.data[0].abv);
+  // console.log(beers.data.length);
 
   for (let i = 0; i < beers.data.length; i++) {
-    let abvNum = parseInt(beers.data[i].abv);
-    if (abvNum < 7) {
-      lowHop.push(beers.data[i]);
+    let ibuNum = parseInt(beers.data[i].ibu);
+    // console.log(`ibuNum: `, ibuNum)
+    if (ibuNum <= 30) {
+      lowHopBeers.push(beers.data[i]);
+    } else if (ibuNum > 30) {
+      highHopBeers.push(beers.data[i])
     }
   }
 
-  // console.log(Object.prototype.toString.call(beers));
-  // console.log(Object.prototype.toString.call(beerArr));
-
-  console.log(beers.data);
-  console.log(lowHopBeers);
+  console.log(`beers.data: `, beers.data);
+  console.log(`lowHopBeers:`, lowHopBeers);
+  console.log(`highHopBeers:`, highHopBeers);
 };

@@ -30,11 +30,10 @@ const getBeerLocations = () => {
 // const displayCategories = () => {
 // console.log(categories);
 // };
+const lowHopBeers = [];
+const highHopBeers = [];
 
 const displayBeers = () => {
-  const lowHopBeers = [];
-  const highHopBeers = [];
-
   // console.log(beers.data[0].abv);
   // console.log(beers.data.length);
 
@@ -50,50 +49,60 @@ const displayBeers = () => {
   }
 
   // console.log(`beers.data: `, beers.data);
-  // console.log(`lowHopBeers:`, lowHopBeers);
-  // console.log(`highHopBeers:`, highHopBeers);
+  console.log(`lowHopBeers:`, lowHopBeers);
+  console.log(`highHopBeers:`, highHopBeers);
 
   // Mapping the arrays and adding DOM elements
   lowHopBeers.map(beer => {
     const lowIbuUl = document.getElementById("lowIbu");
     const li = document.createElement("li");
+    const beerId = beer.id;
+    console.log(beerId);
+    let beerIbu = beer.ibu;
+    // console.log(`beerIBU: `, beer.ibu);
     const heartSpan = document.createElement("span");
+    heartSpan.setAttribute("id", `${beerId}`);
     heartSpan.innerHTML = "<i class='far fa-heart'></i>";
     li.appendChild(document.createTextNode(beer.name));
     li.append(heartSpan);
     lowIbuUl.appendChild(li);
     li.addEventListener("click", function() {
-      makeRedHeartLow();
+      makeRedHeartLow(beerIbu, beerId);
     });
   });
 
   highHopBeers.map(beer => {
     const highIbuUl = document.getElementById("highIbu");
     let beerIbu = beer.ibu;
-    console.log(`beerIBU: `, beer.ibu);
+    const beerId = beer.id;
+    // console.log(`beerIBU: `, beer.ibu);
     const li = document.createElement("li");
     const heartSpan = document.createElement("span");
-    heartSpan.setAttribute("id", "heart");
+    heartSpan.setAttribute("id", `${beerId}`);
     heartSpan.innerHTML = "<i class='far fa-heart'></i>";
     li.appendChild(document.createTextNode(beer.name));
     li.append(heartSpan);
     highIbuUl.appendChild(li);
     li.addEventListener("click", function() {
-      makeRedHeartHigh(beerIbu);
+      makeRedHeartHigh(beerIbu, beerId);
     });
   });
 
-  const makeRedHeartLow = beerIbu => {
+  const makeRedHeartLow = (beerIbu, beerId) => {
     for (let i = 0; i < lowHopBeers.length; i++) {
       if (lowHopBeers[i].ibu === beerIbu) {
         console.log(`this IBU: `, lowHopBeers[i].ibu, `clickedIBU: `, beerIbu);
-        // document.getElementById("heart").style.color = "red";
+        document.getElementById(`${beerId}`).style.color = "red";
       }
     }
   };
 
-  const makeRedHeartHigh = () => {
-    console.log(highHopBeers);
-    // document.getElementById("heart").style.color = "red";
+  const makeRedHeartHigh = (beerIbu, beerId) => {
+    for (let i = 0; i < highHopBeers.length; i++) {
+      if (highHopBeers[i].ibu === beerIbu) {
+        console.log(`this IBU: `, highHopBeers[i].ibu, `clickedIBU: `, beerIbu);
+        document.getElementById(`${beerId}`).style.color = "red";
+      }
+    }
   };
 };

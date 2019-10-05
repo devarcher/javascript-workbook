@@ -44,7 +44,7 @@ const displayBeers = () => {
     // console.log(`ibuNum: `, ibuNum)
     if (ibuNum <= 30) {
       lowHopBeers.push(beers.data[i]);
-    } else if (ibuNum > 30) {
+    } else if (ibuNum > 50) {
       highHopBeers.push(beers.data[i]);
     }
   }
@@ -55,9 +55,22 @@ const displayBeers = () => {
 
   // Mapping the arrays and adding DOM elements
   lowHopBeers.map(beer => {
+    const lowIbuUl = document.getElementById("lowIbu");
     const li = document.createElement("li");
-    const heart = li.innerHTML("<i class='far fa-heart'></i>");
+    const heartSpan = document.createElement("span");
+    heartSpan.innerHTML = "<i class='far fa-heart'></i>"
+    li.appendChild(document.createTextNode(beer.name));
+    li.append(heartSpan);
+    lowIbuUl.appendChild(li);
+  });
 
-
+  highHopBeers.map(beer => {
+    const highIbuUl = document.getElementById("highIbu");
+    const li = document.createElement("li");
+    const heartSpan = document.createElement("span");
+    heartSpan.innerHTML = "<i class='far fa-heart'></i>"
+    li.appendChild(document.createTextNode(beer.name));
+    li.append(heartSpan);
+    highIbuUl.appendChild(li);
   });
 };

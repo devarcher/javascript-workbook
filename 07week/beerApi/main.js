@@ -57,8 +57,8 @@ const displayBeers = () => {
     const lowIbuUl = document.getElementById("lowIbu");
     const li = document.createElement("li");
     const beerId = beer.id;
-    console.log(beerId);
-    let beerIbu = beer.ibu;
+    // console.log(beerId);
+    // let beerIbu = beer.ibu;  
     // console.log(`beerIBU: `, beer.ibu);
     const heartSpan = document.createElement("span");
     heartSpan.setAttribute("id", `${beerId}`);
@@ -67,13 +67,13 @@ const displayBeers = () => {
     li.append(heartSpan);
     lowIbuUl.appendChild(li);
     li.addEventListener("click", function() {
-      makeRedHeartLow(beerIbu, beerId);
+      makeRedHeartLow(beerId);
     });
   });
 
   highHopBeers.map(beer => {
     const highIbuUl = document.getElementById("highIbu");
-    let beerIbu = beer.ibu;
+    // let beerIbu = beer.ibu;
     const beerId = beer.id;
     // console.log(`beerIBU: `, beer.ibu);
     const li = document.createElement("li");
@@ -84,24 +84,33 @@ const displayBeers = () => {
     li.append(heartSpan);
     highIbuUl.appendChild(li);
     li.addEventListener("click", function() {
-      makeRedHeartHigh(beerIbu, beerId);
+      makeRedHeartHigh(beerId);
     });
   });
 
-  const makeRedHeartLow = (beerIbu, beerId) => {
+  const makeRedHeartLow = (beerId) => {
     for (let i = 0; i < lowHopBeers.length; i++) {
-      if (lowHopBeers[i].ibu === beerIbu) {
-        console.log(`this IBU: `, lowHopBeers[i].ibu, `clickedIBU: `, beerIbu);
-        document.getElementById(`${beerId}`).style.color = "red";
+      if (lowHopBeers[i].id === beerId) {
+        // console.log(`this IBU: `, lowHopBeers[i].ibu, `clickedIBU: `, beerIbu);
+
+        if (document.getElementById(`${beerId}`).style.color === "red") {
+          document.getElementById(`${beerId}`).style.color = "black";
+        } else {
+          document.getElementById(`${beerId}`).style.color = "red";
+        }
       }
     }
   };
 
-  const makeRedHeartHigh = (beerIbu, beerId) => {
+  const makeRedHeartHigh = (beerId) => {
     for (let i = 0; i < highHopBeers.length; i++) {
-      if (highHopBeers[i].ibu === beerIbu) {
-        console.log(`this IBU: `, highHopBeers[i].ibu, `clickedIBU: `, beerIbu);
-        document.getElementById(`${beerId}`).style.color = "red";
+      if (highHopBeers[i].id === beerId) {
+        // console.log(`this IBU: `, highHopBeers[i].ibu, `clickedIBU: `, beerIbu);
+        if (document.getElementById(`${beerId}`).style.color === "red") {
+          document.getElementById(`${beerId}`).style.color = "black";
+        } else {
+          document.getElementById(`${beerId}`).style.color = "red";
+        }
       }
     }
   };

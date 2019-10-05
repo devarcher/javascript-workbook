@@ -27,9 +27,9 @@ const getBeerLocations = () => {
     });
 };
 
-const displayCategories = () => {
-  // console.log(categories);
-};
+// const displayCategories = () => {
+// console.log(categories);
+// };
 
 const displayBeers = () => {
   const lowHopBeers = [];
@@ -38,17 +38,26 @@ const displayBeers = () => {
   // console.log(beers.data[0].abv);
   // console.log(beers.data.length);
 
+  // Finding the low and high bitter beers and pushing them to appropriate array.
   for (let i = 0; i < beers.data.length; i++) {
     let ibuNum = parseInt(beers.data[i].ibu);
     // console.log(`ibuNum: `, ibuNum)
     if (ibuNum <= 30) {
       lowHopBeers.push(beers.data[i]);
     } else if (ibuNum > 30) {
-      highHopBeers.push(beers.data[i])
+      highHopBeers.push(beers.data[i]);
     }
   }
 
   console.log(`beers.data: `, beers.data);
   console.log(`lowHopBeers:`, lowHopBeers);
   console.log(`highHopBeers:`, highHopBeers);
+
+  // Mapping the arrays and adding DOM elements
+  lowHopBeers.map(beer => {
+    const li = document.createElement("li");
+    const heart = li.innerHTML("<i class='far fa-heart'></i>");
+
+
+  });
 };
